@@ -1,4 +1,3 @@
-import { Category } from './types';
 export interface Billboard {
   id: string;
   label: string;
