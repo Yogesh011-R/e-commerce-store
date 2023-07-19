@@ -1,7 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import useCart from '@/hooks/use-cart';
@@ -30,13 +30,16 @@ const Summary = () => {
     return total + Number(item.price);
   }, 0);
 
+  const [isLoading, setIsLoading] = useState(false);
   const onCheckout = async () => {
+    setIsLoading(true);
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
       {
         productIds: items.map(item => item.id),
       }
     );
+    setIsLoading(false);
 
     window.location = response.data.url;
   };
@@ -52,7 +55,7 @@ const Summary = () => {
       </div>
       <Button
         onClick={onCheckout}
-        disabled={items.length === 0}
+        disabled={items.length === 0 || isLoading}
         className='w-full mt-6'
       >
         Checkout
