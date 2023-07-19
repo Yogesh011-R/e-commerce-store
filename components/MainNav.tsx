@@ -26,6 +26,7 @@ const MainNav: FC<IMainNavProps> = ({ data }) => {
         return (
           <Link
             href={route.href}
+            key={route.href}
             className={cn(
               ' font-medium hover:text-black  mt-0.5 transition-colors',
               route.active ? 'text-black font-medium' : 'text-neutral-500'

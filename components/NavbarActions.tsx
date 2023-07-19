@@ -16,10 +16,9 @@ const NavbarActions: FC<INavbarActionsProps> = props => {
   }, []);
 
   const cart = useCart();
+  const router = useRouter();
 
   if (!isMounted) return null;
-
-  const router = useRouter();
 
   return (
     <div className='ml-auto flex items-center gap-x-4'>
